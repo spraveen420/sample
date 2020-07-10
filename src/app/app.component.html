@@ -1,0 +1,27 @@
+<div style="display:flex; justify-content:center; align-items:center; ">
+<mat-card class="maincard">
+  <p *ngIf="detectFiles.length==0">Follow the process step by step</p>
+  <div class="cardList" *ngIf="detectFiles.length!==0">
+    <mat-card [ngStyle]="{'overflow': disp[i]? 'auto':''}" class="card" [ngClass] = "{'flipped': disp[i]}"  (click)='disp[i]= !disp[i]'  *ngFor="let src of detectFiles; index as i">
+      <span *ngIf="disp[i] === false" >
+      <b><u>{{detectFiles[i].slice(detectFiles[0].lastIndexOf('/') + 1)}}</u></b>
+      <img class="image"  [src]="src" >
+      </span>
+      <span *ngIf="disp[i] === true">
+        <p class="back"><b><u>{{detectFiles[i].slice(detectFiles[0].lastIndexOf('/') + 1)}}</u></b></p>
+        <p class="back" *ngFor="let x of iclass[i]; index as j;"><span style="float: left;">{{itext[x]}}</span><span style="float: right;">{{math.floor(percent[i][j]*100)}}%</span>
+          <mat-progress-bar mode="determinate" value={{math.floor(percent[i][j]*100)}} ></mat-progress-bar>
+        </p>
+      </span>
+    </mat-card>
+  </div>
+</mat-card>
+</div>
+
+<!-- <button mat-raised-button color="primary" (click)="openDialog()" >Sample</button> -->
+
+<!-- <div title="Conversion of image to Html is in progress..." style="position: relative; width: 100%; height: 12px; display: flex; align-items: center; justify-content: center;">
+  <mat-progress-bar style="width: 100%;height: 12px;position: absolute;" [color]="'primary'" [mode]="'indeterminate'" [value]="60">
+  </mat-progress-bar>
+  <span style="z-index:999; font-weight: bold;font-size: 12px;">Conversion of image to Html is in progress...</span>
+</div> -->

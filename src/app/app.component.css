@@ -1,0 +1,51 @@
+.image{
+  width:200px;
+  height: 200px;
+  position: relative;
+}
+.image:hover{
+  transform: scale(2); 
+  z-index: 999;
+}
+
+.card{
+  width:240px;
+  height:260px;
+  margin-right: 1%;
+  margin-bottom: 1%;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+}
+
+
+.card.flipped{
+  transform: rotateY( 180deg );
+}
+.back {
+  transform: rotateY( 180deg );
+}
+
+
+.maincard{
+  background-color: rgb(219, 219, 219);
+  text-align: center;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  width: fit-content;
+}
+
+
+.cardList {
+  display: flex;
+  /* flex-direction: row; */
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+*{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+
