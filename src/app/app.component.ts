@@ -13,13 +13,13 @@ export class AppComponent implements OnInit {
   constructor(private appService: AppService, public dialog: MatDialog) {}
 
 
-  detectFiles = ['http://localhost:8080/src/outputtestimage/CarRent.jpg', // ];
-   'http://localhost:8080/src/outputtestimage/CarRental.jpg',
-   'http://localhost:8080/src/outputtestimage/CarRentals.jpg',
-   'http://localhost:8080/src/outputtestimage/CarRents.jpg',
-   'http://localhost:8080/src/outputtestimage/s1.jpg',
-   'http://localhost:8080/src/outputtestimage/s2.jpg',
-   'http://localhost:8080/src/outputtestimage/s3.jpg'];
+  detectFiles = ['http://localhost:8081/src/outputtestimage/CarRent.jpg', // ];
+   'http://localhost:8081/src/outputtestimage/CarRental.jpg',
+   'http://localhost:8081/src/outputtestimage/CarRentals.jpg',
+   'http://localhost:8081/src/outputtestimage/CarRents.jpg',
+   'http://localhost:8081/src/outputtestimage/s1.jpg',
+   'http://localhost:8081/src/outputtestimage/s2.jpg',
+   'http://localhost:8081/src/outputtestimage/s3.jpg'];
 
    disp = Array.from({length: this.detectFiles.length}, () => false );
 

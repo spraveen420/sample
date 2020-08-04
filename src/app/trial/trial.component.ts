@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-trial',
@@ -7,9 +8,59 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TrialComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _snackBar: MatSnackBar) { }
 
+  panelOpenState = '';
+  existingApiList = ['/api/sample', '/api/connect', '/api/trial', '/api/service'];
+  newApiList = [''];
   ngOnInit() {
+  }
+
+  copyClipBoardNotification(value) {
+    this._snackBar.open('"'+value+'" copied to clipboard!!!','',{
+      duration: 1500,
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+      panelClass: 'style-success',
+    });
+  }
+
+  addAPI(){
+    this.newApiList.push('');
+  }
+
+  deleteAPI(index) {
+    if(this.newApiList.length > 1) {
+      this.newApiList.splice(index,1);
+    }
+  }
+
+  trackByIdx(index: number, obj: any): any {
+    return index;
+  }
+
+  nextInExistingService() {
+    this._snackBar.open('http://localhost:8082/','',{
+      duration: 1500,
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+      panelClass: 'style-success',
+    });
+    // stepperchange
+    // routerchange
+  }
+
+  nextInNewService() {
+    console.log(this.newApiList);
+    // backend hit to generate service
+    this._snackBar.open('http://localhost:8081/','',{
+      duration: 1500,
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+      panelClass: 'style-success',
+    });
+    // stepperchange
+    // routechange
   }
 
 }

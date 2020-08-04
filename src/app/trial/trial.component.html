@@ -1,4 +1,50 @@
+<div style="text-align: center;font-size: 4vh;">
+  <span class="material-icons" style="vertical-align: -20%;">dns</span>&ensp;
+  <b>Services</b>
+</div>
+<br/><br/>
 <div>
-  <label class="mat-input-element" >Some text</label>
-  <input class="mat-input-element" type='text' id='t1' required>
-  </div>
+  <mat-accordion>
+    <mat-radio-group [(ngModel)]="panelOpenState">
+    <mat-expansion-panel class="expansion">
+      
+      <mat-expansion-panel-header [ngClass]="(panelOpenState == 'old')?'default':'no-events'">
+        
+        <mat-panel-title>
+          <mat-radio-button class="default" value='old'></mat-radio-button>
+          Existing Service
+        </mat-panel-title>
+        <mat-panel-description>
+          Use already running service
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+     <mat-list *ngFor="let item of existingApiList; index as i">
+       <mat-list-item class="li" (click) = "copyClipBoardNotification(item)" style="cursor: pointer;" title="Click to copy on Clipboard" [cdkCopyToClipboard]="existingApiList[i]"><span class="material-icons">arrow_right</span>{{item}}</mat-list-item>
+     </mat-list>
+     <button mat-raised-button color="primary" class="float-right" (click)="nextInExistingService()">Next<mat-icon>navigate_next</mat-icon></button>
+    </mat-expansion-panel>
+    <mat-expansion-panel  class="expansion">
+      <mat-expansion-panel-header [ngClass]="(panelOpenState == 'new')?'default':'no-events'">
+        <mat-panel-title>
+          <mat-radio-button class="default" value='new'></mat-radio-button>
+          New Service
+        </mat-panel-title>
+        <mat-panel-description>
+          Generate new service
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <span *ngFor="let item of newApiList;index as i;trackBy:trackByIdx">
+      <mat-form-field appearance="outline" style="width: 40%;">
+        <mat-label>Enter API</mat-label>
+        <input matInput type="text" placeholder="/api/sample" [(ngModel)]="newApiList[i]" />
+      </mat-form-field>&nbsp;
+      <i class="fas fa-times-circle" title="Click to remove API" (click)="deleteAPI(i)" style="color: red;cursor: pointer; vertical-align: 50%;"></i>
+      &nbsp;&nbsp;
+      </span><br/><button mat-mini-fab color="primary" title="Click to add API" (click)="addAPI()" aria-label="Example icon button with a menu icon">
+        <mat-icon>add</mat-icon>
+      </button>
+      <button mat-raised-button color="primary" class="float-right" (click)="nextInNewService()"><mat-icon>dns</mat-icon>&ensp;Generate Service</button>
+    </mat-expansion-panel>
+    </mat-radio-group>
+  </mat-accordion>
+</div>
