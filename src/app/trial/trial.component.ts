@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SampleApi } from './apiModel';
 
 @Component({
   selector: 'app-trial',
@@ -12,7 +13,8 @@ export class TrialComponent implements OnInit {
 
   panelOpenState = '';
   existingApiList = ['/api/sample', '/api/connect', '/api/trial', '/api/service'];
-  newApiList = [''];
+  sampleApi = {action:'', method:''};
+  newApiList = [new SampleApi()];
   ngOnInit() {
   }
 
@@ -26,7 +28,7 @@ export class TrialComponent implements OnInit {
   }
 
   addAPI(){
-    this.newApiList.push('');
+    this.newApiList.push(new SampleApi());
   }
 
   deleteAPI(index) {

@@ -6,7 +6,7 @@
 <div>
   <mat-accordion>
     <mat-radio-group [(ngModel)]="panelOpenState">
-    <mat-expansion-panel class="expansion">
+    <mat-expansion-panel class="expansion" title="Select the option to view contents">
       
       <mat-expansion-panel-header [ngClass]="(panelOpenState == 'old')?'default':'no-events'">
         
@@ -23,7 +23,7 @@
      </mat-list>
      <button mat-raised-button color="primary" class="float-right" (click)="nextInExistingService()">Next<mat-icon>navigate_next</mat-icon></button>
     </mat-expansion-panel>
-    <mat-expansion-panel  class="expansion">
+    <mat-expansion-panel  class="expansion" title="Select the option to view contents">
       <mat-expansion-panel-header [ngClass]="(panelOpenState == 'new')?'default':'no-events'">
         <mat-panel-title>
           <mat-radio-button class="default" value='new'></mat-radio-button>
@@ -33,14 +33,23 @@
           Generate new service
         </mat-panel-description>
       </mat-expansion-panel-header>
-      <span *ngFor="let item of newApiList;index as i;trackBy:trackByIdx">
+      <div *ngFor="let item of newApiList;index as i;trackBy:trackByIdx">
       <mat-form-field appearance="outline" style="width: 40%;">
         <mat-label>Enter API</mat-label>
-        <input matInput type="text" placeholder="/api/sample" [(ngModel)]="newApiList[i]" />
+        <input matInput type="text" placeholder="/api/sample" [(ngModel)]="newApiList[i].action" />
+      </mat-form-field>&nbsp;
+      <mat-form-field appearance="outline" title="Change method of request"  style="width: 20%;">
+        <mat-label>Type</mat-label>
+        <mat-select [(ngModel)]="newApiList[i].method">
+          <mat-option value="post">POST</mat-option>
+          <mat-option value="get">GET</mat-option>
+          <mat-option value="put">PUT</mat-option>
+          <mat-option value="delete">DELETE</mat-option>
+        </mat-select>
       </mat-form-field>&nbsp;
       <i class="fas fa-times-circle" title="Click to remove API" (click)="deleteAPI(i)" style="color: red;cursor: pointer; vertical-align: 50%;"></i>
       &nbsp;&nbsp;
-      </span><br/><button mat-mini-fab color="primary" title="Click to add API" (click)="addAPI()" aria-label="Example icon button with a menu icon">
+      </div><br/><button mat-mini-fab color="primary" title="Click to add API" (click)="addAPI()" aria-label="Example icon button with a menu icon">
         <mat-icon>add</mat-icon>
       </button>
       <button mat-raised-button color="primary" class="float-right" (click)="nextInNewService()"><mat-icon>dns</mat-icon>&ensp;Generate Service</button>
