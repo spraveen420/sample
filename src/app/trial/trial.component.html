@@ -19,7 +19,7 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
      <mat-list *ngFor="let item of existingApiList; index as i">
-       <mat-list-item class="li" (click) = "copyClipBoardNotification(item)" style="cursor: pointer;" title="Click to copy on Clipboard" [cdkCopyToClipboard]="existingApiList[i]"><span class="material-icons">arrow_right</span>{{item}}</mat-list-item>
+       <mat-list-item class="li" style="cursor: pointer;" title="Click to copy on Clipboard"><span [class]="labelClasses[item.method]">{{item.method | uppercase}}</span>&nbsp;&nbsp;{{item.action}}</mat-list-item>
      </mat-list>
      <button mat-raised-button color="primary" class="float-right" (click)="nextInExistingService()">Next<mat-icon>navigate_next</mat-icon></button>
     </mat-expansion-panel>

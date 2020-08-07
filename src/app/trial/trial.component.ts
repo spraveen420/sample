@@ -12,20 +12,14 @@ export class TrialComponent implements OnInit {
   constructor(private _snackBar: MatSnackBar) { }
 
   panelOpenState = '';
-  existingApiList = ['/api/sample', '/api/connect', '/api/trial', '/api/service'];
-  sampleApi = {action:'', method:''};
+  labelClasses = { post: 'badge badge-primary', get: 'badge badge-success',
+  put: 'badge badge-warning', delete: 'badge badge-danger'};
+  existingApiList = [{ action: '/api/store', method: 'post'}, { action: '/api/gather', method: 'get'},
+  { action: '/api/alter', method: 'put'}, { action: '/api/remove', method: 'delete'}];
   newApiList = [new SampleApi()];
   ngOnInit() {
   }
 
-  copyClipBoardNotification(value) {
-    this._snackBar.open('"'+value+'" copied to clipboard!!!','',{
-      duration: 1500,
-      horizontalPosition: 'center',
-      verticalPosition: 'top',
-      panelClass: 'style-success',
-    });
-  }
 
   addAPI(){
     this.newApiList.push(new SampleApi());
@@ -42,12 +36,6 @@ export class TrialComponent implements OnInit {
   }
 
   nextInExistingService() {
-    this._snackBar.open('http://localhost:8082/','',{
-      duration: 1500,
-      horizontalPosition: 'center',
-      verticalPosition: 'top',
-      panelClass: 'style-success',
-    });
     // stepperchange
     // routerchange
   }
@@ -61,6 +49,10 @@ export class TrialComponent implements OnInit {
       verticalPosition: 'top',
       panelClass: 'style-success',
     });
+    // button activate
+  }
+
+  done(){
     // stepperchange
     // routechange
   }
